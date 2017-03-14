@@ -3,11 +3,36 @@
 <head>
 	<meta charset="UTF-8">
 	<title>SFTP</title>
+	<link rel="stylesheet" type="text/css" href="lib/node_modules/bootstrap/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="css/main.css">
 </head>
-<body>
-	
-<!-- 	<script type="text/javascript" src="app/listingDirectory.js"></script> -->	
+<body ng-app="SftpApp">
+
+		<!-- <div ng-controller="ConnectingCtrl"> -->
+			<div ng-include="'partials/connect.html'"></div>
+		<!-- </div> -->
+
+
+ 	
+ 	<button type="button" class="btn btn-default" ng-click="upload()">Upload</button>
+ 	<button type="button" class="btn btn-default" ng-click="download()">Download</button>
+
+
+
+		<script type="text/javascript" src="lib/node_modules/jquery/dist/jquery.min.js"></script>
+		<script type="text/javascript" src="lib/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+		<!-- <script type="text/javascript" src="lib/node_modules/angular/angular.min.js"></script>
+		<script type="text/javascript" src="lib/node_modules/angular-route/angular-route.min.js"></script> -->
+		<script type="text/javascript" src="lib/node_modules/firebase/firebase.js"></script>
+
 		<script type="text/javascript" src="dist/bundle.js"></script>
+		<!-- <script type="text/javascript" src="app/controllers/ConnectingCtrl.js"></script>	
+		<script type="text/javascript" src="app/controllers/DownloadingCtrl.js"></script>	
+		<script type="text/javascript" src="app/controllers/UploadingCtrl.js"></script>	 -->
+
+
+
+		<!-- <script type="text/javascript" src="app/values/fb-creds.js"></script> -->
 
 </body>
 </html>
