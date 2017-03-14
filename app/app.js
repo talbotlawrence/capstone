@@ -1,55 +1,49 @@
-// "use strict";
+"use strict";
 
-// var Client = require('ssh2').Client;
-// var remotePathToList = '/path/.com';
+let angular = require("../lib/node_modules/angular/"),
+	app = angular.module("SftpApp", ['ngRoute']);
 
-// //Connection settings
-// var connectionSettings = {
-// 	host: 'server.com',
-// 	port: 22,
-// 	username: 'username',
-// 	password: 'password'
-// };
+require("../lib/node_modules/angular-route/angular-route.min.js");
 
-// //Create the connection
-// var connection = new Client();
-
-// connection.on('ready', function(){
-// 	connection.sftp(function(error, sftp){
-// 		if(error) throw error;
-
-// //lists the directories on the remote server and closes connection
-// 		sftp.readdir(remotePathToList, function(error, list){
-// 			if(error) throw error;
-// 			console.dir(list);
-// 			connection.end();
-// 		});
-
-// //Download a file
-// 		var remoteDirectory = "/remote/path/file.txt";
-// 		var localDirectory = "/local/path/file.txt";
-
-// 		sftp.fastGet(remoteDirectory, localDirectory, {}, function(downloadError){
-// 			if(downloadError) throw downloadError;
-// 			console.log("Successfully uploaded");
-// 		});
-
-// //Upload a file
-// 		var fs = require("fs"); //this line uses the node file system
-// 		var readStream = fs.createReadStream("/local/path/file.txt");
-// 		var writeStream = sftp.createWriteStream("/remote/path/file.txt");
-
-// 		writeStream.on('close', function(){
-// 			console.log("The file transferred successfully");
-// 		});
-
-// 		writeStream.on('end', function(){
-// 			console.log("The connection closed");
-// 			connection.close();
-// 		});
-
-// 		readStream.pipe(writeStream);  //initiate the transfer of the file
+require("./factories/");
+require("./controllers/");
 
 
+// var app = angular.module("SftpApp", ["ngRoute"]);
+
+// let isAuth = (AuthFactory) => new Promise ( (resolve, reject) => {
+// 	AuthFactory.isAuthenticated()
+// 	.then ((userExists) => {
+// 		if (userExists){
+// 			resolve();
+// 		}else {
+// 			reject();
+// 		}
 // 	});
-// }).connect(connectionSettings);
+// });
+
+app.config(function($routeProvider){
+	$routeProvider.
+	when('/', {
+		templateUrl: 'partials/connect.html',
+		controller:"ConnectingCtrl"
+		// resolve: {isAuth}
+	});//.
+	// when('/login', {
+	// 	templateUrl: 'partials/login.html',
+	// 	controller:"UserCtrl"
+	// 	// resolve: {isAuth}
+	// }).
+	// otherwise('/items/list');
+});
+
+// app.run(($location, FBCreds) => {
+// 	let creds = FBCreds;
+// 	let authConfig = {
+// 		apiKey: creds.apiKey,
+// 		authDomain: creds.authDomain,
+// 		databseURL: creds.databaseURL
+// 	};
+
+// 	firebase.initializeApp(authConfig);
+// });

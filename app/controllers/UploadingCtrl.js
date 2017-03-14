@@ -53,19 +53,26 @@
 ///////////////////////////////////////////////////////////////////////////////////////
 //lib/node_modules/ssh2-sftp-client--upload--working///////////////////////////
 
-let Client = require('../lib/node_modules/ssh2-sftp-client');
-let sftp = new Client();
-sftp.connect({
-    host: 'demo.wftpserver.com',
-    port: '2222',
-    username: 'demo-user',
-    password: 'demo-user'
-}).then(() => {
-    sftp.put("/home/talbot/workspace/capstone/sftp/001talbot.txt", "/upload/001talbot.txt", "zlib");
-    return sftp.list('/upload');
-}).then((data) => {
-    console.log(data, 'the data info');
-}).catch((err) => {
-    console.log(err, 'catch error');
-});
+// app.controller("UploadingCtrl", function($scope){
+
+// 	$scope.uploading = function(){
+// 		let Client = require('../../lib/node_modules/ssh2-sftp-client');
+// 		let sftp = new Client();
+// 		sftp.connect({
+// 		    host: 'demo.wftpserver.com',
+// 		    port: '2222',
+// 		    username: 'demo-user',
+// 		    password: 'demo-user'
+// 		}).then(() => {
+// 		    sftp.put("/home/talbot/workspace/capstone/sftp/001talbot.txt", "/upload/001talbot.txt", "zlib");
+// 		    return sftp.list('/upload');
+// 		}).then((data) => {
+// 		    console.log(data, 'the data info');
+// 		}).catch((err) => {
+// 		    console.log(err, 'catch error');
+// 		});
+// 	};
+
+
+// });
 /////////////////////////////////////////////////////////////////////////////////
