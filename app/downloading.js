@@ -1,25 +1,30 @@
-// "use strict";
+"use strict";
 
-// var Client = require('ssh2').Client;
-// var connectionSettings = {
-//      host: 'server.com',
-//      port: 22, 
-//      username: 'myUsername',
-//      password: 'myPassword'
-// };
+//lib/node_modules/ssh2--download--this is working/////////////////////////////////////
 
-// var connection = new Client();
-// connection.on('ready', function() {
-//     connection.sftp(function(error, sftp) {
-//         if (error) throw error;
+var Client = require('../lib/node_modules/ssh2').Client;
+
+var connSettings = {
+     host: 'test.rebex.net',
+     port: 22, 
+     username: 'demo',
+     password: 'password'
+};
+
+var conn = new Client();
+conn.on('ready', function() {
+    conn.sftp(function(err, sftp) {
+        if (err) throw err;
         
-//         var remoteDirectory = "/remote/file/path/file.txt";
-//         var localDirectory = "/local/file/path/file.txt";
+        var moveFrom = "/readme.txt";
+        var moveTo = "/home/talbot/workspace/capstone/sftp/readme.txt";
 
-//         sftp.fastGet(remoteDirectory, localDirectory , {}, function(downloadError){
-//             if(downloadError) throw downloadError;
+        sftp.fastGet(moveFrom, moveTo , {}, function(downloadError){
+            if(downloadError) throw downloadError;
 
-//             console.log("Succesfully uploaded");
-//         });
-//     });
-// }).connect(connectionSettings);
+            console.log("Succesfully uploaded");
+        });
+    });
+}).connect(connSettings);
+
+///////////////////////////////////////////////////////////////////////////////

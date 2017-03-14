@@ -1,7 +1,0 @@
-This is a test.
-I am building an SFTP client for a school project.
-I may be sending send.txt.pgp files in the future.
-Thank you so much for having an SFTP server available for my project.
-
-https://github.com/talbotlawrence
-https://www.linkedin.com/in/talbot-lawrence-23135539/

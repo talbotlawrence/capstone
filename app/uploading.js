@@ -1,33 +1,71 @@
-// "use strict";
+"use strict";
 
-// var Client = require('ssh2').Client;
+//lib/node_modules/ssh2--upload////////////////////////////////////////////////////////
+
+// var Client = require('../lib/node_modules/ssh2').Client;
+
 // var connectionSettings = {
-//      host: 'server.com',
+//      host: 'test.rebex.net',
 //      port: 22, 
-//      username: 'myUsername',
-//      password: 'myPassword'
+//      username: 'demo',
+//      password: 'password'
 // };
 
+// // var connectionSettings = {
+// //      host: 'demo.wftpserver.com',
+// //      port: 2222, 
+// //      username: 'demo-user',
+// //      password: 'demo-user'
+// // };
+
+// var Client = require('../lib/node_modules/ssh2').Client;
+// var connSettings = {
+//      host: 'demo.wftpserver.com',
+//      port: 2222, 
+//      username: 'demo-user',
+//      password: 'demo-user'
+// };
 // var remotePathToList = '/var/www/ourcodeworld';
 
-// var connection = new Client();
-// connection.on('ready', function() {
-//     connection.sftp(function(error, sftp) {
-//          if (error) throw error;
+// var conn = new Client();
+// conn.on('ready', function() {
+//     conn.sftp(function(err, sftp) {
+//          if (err) throw err;
          
-//         var fs = require("fs"); // Use node filesystem
-//         var readStream = fs.createReadStream("path-to-local-file.txt");
-//         var writeStream = sftp.createWriteStream("path-to-remote-file.txt");
+//         var fs = require("../lib/node_modules/filesystem"); 
+//         var readStream = fs.createReadStream( "/home/talbot/workspace/capstone/sftp/001talbot.txt" );
+//         var writeStream = sftp.createWriteStream( "/upload/" );
 
 //         writeStream.on('close',function () {
-//             console.log("The file transferred succesfully");
+//             console.log( "- file transferred succesfully" );
 //         });
 
 //         writeStream.on('end', function () {
-//             console.log( "The sftp connection closed");
-//             connection.close();
+//             console.log( "sftp connection closed" );
+//             conn.close();
 //         });
 
-//         readStream.pipe( writeStream );  // initiate transfer of file
+//         // initiate transfer of file
+//         readStream.pipe( writeStream );
 //     });
-// }).connect(connectionSettings);
+// }).connect(connSettings);
+
+///////////////////////////////////////////////////////////////////////////////////////
+//lib/node_modules/ssh2-sftp-client--upload--working///////////////////////////
+
+let Client = require('../lib/node_modules/ssh2-sftp-client');
+let sftp = new Client();
+sftp.connect({
+    host: 'demo.wftpserver.com',
+    port: '2222',
+    username: 'demo-user',
+    password: 'demo-user'
+}).then(() => {
+    sftp.put("/home/talbot/workspace/capstone/sftp/001talbot.txt", "/upload/001talbot.txt", "zlib");
+    return sftp.list('/upload');
+}).then((data) => {
+    console.log(data, 'the data info');
+}).catch((err) => {
+    console.log(err, 'catch error');
+});
+/////////////////////////////////////////////////////////////////////////////////
